@@ -34,13 +34,13 @@ async function getSplTokenSwapVaults(connection) {
 }
 
 async function tvl(api) {
-  const connection = getConnection('cookiechain')
+  const connection = getConnection(api.chain)
 
   const raydiumVaults = await getRaydiumPoolVaults(connection)
   const tokenSwapVaults = await getSplTokenSwapVaults(connection)
   const vaults = [...raydiumVaults, ...tokenSwapVaults]
   if (vaults.length) {
-    const balances = await getTokenAccountBalances(vaults, { chain: 'cookiechain', allowError: true })
+    const balances = await getTokenAccountBalances(vaults, { chain: api.chain, allowError: true })
     for (const [mint, amount] of Object.entries(balances)) api.add(mint, amount)
   }
 }

@@ -48,13 +48,13 @@ async function getClmmVaults(connection) {
 }
 
 async function tvl(api) {
-  const connection = getConnection('cookiechain')
+  const connection = getConnection(api.chain)
 
   await sumPoolAuthorityVaults(connection, api)
 
   const vaults = await getClmmVaults(connection)
   if (vaults.length) {
-    const balances = await getTokenAccountBalances(vaults, { chain: 'cookiechain', allowError: true })
+    const balances = await getTokenAccountBalances(vaults, { chain: api.chain, allowError: true })
     for (const [mint, amount] of Object.entries(balances)) api.add(mint, amount)
   }
 }
