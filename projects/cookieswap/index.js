@@ -4,7 +4,6 @@ const { getConnection, getTokenAccountBalances } = require('../helper/solana')
 async function getRaydiumPoolVaults(connection) {
   const pools = [
     { programId: 'WTzkPUoprVx7PDc1tfKA5sS7k1ynCgU89WtwZhksHX5', vaultA: 137, vaultB: 169 }, // CookieSwap BAMM (Raydium CLMM)
-    { programId: 'DYgGxvJD8GTYQSGFmT4RUab5TJ7W3m7Vrbg2UueNzAq8', vaultA:  72, vaultB: 104 }, // Bang CPAMM (Raydium CPMM)
   ]
   const vaults = []
   for (const { programId, vaultA, vaultB } of pools) {
@@ -47,6 +46,6 @@ async function tvl(api) {
 
 module.exports = {
   timetravel: false,
-  methodology: 'TVL is calculated by summing token balances held in liquidity pool vault accounts across CookieSwap BAMM, CookieSwap CPAMM, and Bang CPAMM on Cookie Chain.',
+  methodology: 'TVL is calculated by summing token balances held in liquidity pool vault accounts across CookieSwap BAMM and CookieSwap CPAMM on Cookie Chain.',
   cookiechain: { tvl },
 }
